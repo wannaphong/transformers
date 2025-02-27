@@ -69,7 +69,7 @@ class FbgemmFp8HfQuantizer(HfQuantizer):
 
         compute_capability = torch.cuda.get_device_capability()
         major, minor = compute_capability
-        if major < 9:
+        if float(str(major)+"."+str(minor)) < 8.9:
             raise ValueError(
                 "FP8 quantized models is only supported on GPUs with compute capability >= 9.0 (e.g H100)"
             )
